@@ -19,7 +19,7 @@ class HomeController extends Controller
         if ($request->filled('daily_rent_price')) {
             $cars->where('daily_rent_price', '<=', $request->daily_rent_price);
         }
-        $data['cars'] = $cars->get();
+        $data['cars'] = $cars->paginate(6);
         return view('welcome', $data);
     }
 }

@@ -6,10 +6,10 @@
             <div class="form-group">
                 <select name="car_type" id="car_type" class="form-select">
                     <option value="">Car Types</option>
-                    <option value="sedan">Sedan</option>
-                    <option value="suv">SUV</option>
-                    <option value="hatchback">Hatchback</option>
-                    <option value="truck">Truck</option>
+                    <option value="petrol">Petrol</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="electric">Electric</option>
+                    <option value="hybrid">Hybrid</option>
                 </select>
             </div>
 
@@ -20,7 +20,10 @@
                     <option value="toyota">Toyota</option>
                     <option value="honda">Honda</option>
                     <option value="ford">Ford</option>
+                    <option value="mercedes">Mercedes</option>
                     <option value="bmw">BMW</option>
+                    <option value="nissan">Nissan</option>
+                    <option value="chevrolet">Chevrolet</option>
                 </select>
             </div>
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Car;
 use App\Models\Rental;
+use Illuminate\Http\Request;
 
 
 class RentalController extends Controller
@@ -13,7 +15,7 @@ class RentalController extends Controller
      */
     public function index()
     {
-        $data['rentals'] = Rental::paginate();
+        $data['rentals'] = Rental::paginate(5);
         return view('admin.rental.index', $data);
     }
 
@@ -29,25 +31,6 @@ class RentalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $validated=$request->validate([
-            'name'=>'required',
-            'brand'=>'required',
-            'model'=>'nullable',
-            'year'=>'required',
-            'car_type'=>'nullable',
-        ]);
-        $car=Car::create($request->all());
-
-        $alert = [
-            'type' => 'Success',
-            'message' => 'Car created successfully',
-        ];
-
-        return redirect()->route('car.index')
-            ->with($alert);
-    }
 
     /**
      * Display the specified resource.
@@ -56,7 +39,17 @@ class RentalController extends Controller
     {
         //
     }
-
+    public function updateStatus(Request $request, $id)
+    {
+        $rental = Rental::find($id);
+        $rental->status = $request->status;
+        $rental->save();
+        $alert = [
+            'type' => 'Success',
+            'message' => 'Rental status updated successfully',
+        ];
+        return redirect()->back()->with($alert);
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -71,12 +64,12 @@ class RentalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'brand'=>'required',
-            'model'=>'nullable',
-            'year'=>'required',
-            'car_type'=>'nullable',
+        $validated = $request->validate([
+            'name' => 'required',
+            'brand' => 'required',
+            'model' => 'nullable',
+            'year' => 'required',
+            'car_type' => 'nullable',
         ]);
         $car = Car::findOrFail($id);
         $car->update($request->all());

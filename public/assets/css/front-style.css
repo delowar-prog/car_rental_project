@@ -1,0 +1,74 @@
+.top-bar{
+width: 100%;
+background-color:#1c272e;
+padding: 10px;
+color:antiquewhite;
+}
+
+.nav-bar{
+    width: 100%;
+    background-color: #26353e;
+    padding: 10px;
+    color:antiquewhite;
+}
+
+.nav-menu{
+    margin: 0;
+    padding: 0;
+}
+.nav-menu >li{
+list-style: none;
+}
+
+/*about page*/
+
+.about-section {
+    padding: 20px 0;
+}
+
+.mission-vision {
+    background: #343a40;
+    color: white;
+    padding: 60px 0;
+}
+
+.mission-vision h2 {
+    color: #ffc107;
+}
+
+.team-member img {
+    border-radius: 50%;
+}
+
+.contact-info {
+    padding: 40px 0;
+}
+
+/*contact*/
+.contact-section {
+    padding: 60px 0;
+    color: #333;
+}
+.contact-form h2,
+.contact-info h2 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #333;
+}
+.contact-info i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #007bff;
+}
+.form-control {
+    border-radius: 0;
+}
+.btn-primary {
+    border-radius: 0;
+    padding: 10px 20px;
+}

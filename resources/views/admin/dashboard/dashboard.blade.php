@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section('title', 'Dashboard');
+@section('title', 'Dashboard')
 @section('content')
     <div class="container balance-summary">
         <div class="balance-title text-center text-white">

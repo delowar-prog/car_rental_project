@@ -1,12 +1,13 @@
 @extends('admin.layout.layout')
-@section('title', 'Customer');
+@section('title', 'Customer')
 @section('content')
     <div class="container mt-5 table-style">
         <div class="d-flex justify-content-between my-1">
             <h5 class="card-title mb-0">Customer List </h5>
-
+            <div class="d-flex gap-3">
+                <h3>Total Customer: {{$customers->total()}}</h3>
+            </div>
         </div>
-
         <table class="table table-striped">
             <thead>
                 <tr>

@@ -13,15 +13,12 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 class RentalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'car_id' => 'required|exists:cars,id',
             'start_date' => 'required|date|after_or_equal:today',
-            'end_date' => 'required|date|after:start_date',
+            'end_date' => 'required|date|after_or_equal:start_date',
             'phone' => 'required|max:11',
             'address' => 'required',
         ]);
@@ -43,20 +40,15 @@ class RentalController extends Controller
             ->exists();
 
         if ($existingRental) {
-            // Car is not available
             return redirect()->back()->withErrors(['car_id' => 'Sorry! This car is not available for the selected dates.']);
         }
-        // Calculate the total rental days
         $car = Car::findOrFail($carId);
-        $rentalDays = $startDate->diffInDays($endDate) + 1; // Include the start date
-
-        // Calculate the total price (daily_rent * rentalDays)
+        $rentalDays = $startDate->diffInDays($endDate) + 1;
         $totalPrice = $car->daily_rent_price * $rentalDays;
-        // Car is available, proceed with Rental
+
         DB::beginTransaction();
 
         try {
-            // Create the rental record
             $rental = Rental::create([
                 'user_id' => auth()->id(),
                 'car_id' => $carId,
@@ -64,26 +56,17 @@ class RentalController extends Controller
                 'end_date' => $endDate,
                 'total_cost' => $totalPrice,
             ]);
-
-            // Create the user details record
             $userDetail = UserDetail::create([
                 'user_id' => auth()->id(),
                 'phone' => $validated['phone'],
                 'address' => $validated['address'],
             ]);
-
-            // Commit the transaction if both operations are successful
             DB::commit();
-            // Send the booking confirmation email
             Mail::to(auth()->user()->email)->send(new BookingConfirmationMail($rental, $userDetail));
             return redirect()->back()->with('success', 'Booking confirmed! An email has been sent.');
         } catch (\Exception $e) {
-            // Rollback the transaction if something fails
             DB::rollBack();
-
-            // Optionally log the error
             \Log::error('Error storing booking: ' . $e->getMessage());
-
             return redirect()->back()->withErrors(['error' => 'Something went wrong. Please try again later.']);
         }
     }
@@ -99,9 +82,36 @@ class RentalController extends Controller
 
         $currentBookings = Rental::where('user_id', $userId)
             ->where('end_date', '>=', $today)
+            ->where('status', '!=', 'canceled')
             ->orderBy('start_date', 'asc')
             ->get();
 
-        return view('frontend.rental.rental', compact('previousBookings', 'currentBookings'));
+        $canceledBookings = Rental::where('user_id', $userId)
+            ->where('status', '=', 'canceled')
+            ->orderBy('start_date', 'asc')
+            ->get();
+
+        return view('frontend.rental.rental', compact('previousBookings', 'currentBookings', 'canceledBookings'));
+    }
+
+    public function cancel($id)
+    {
+        $booking = Rental::findOrFail($id);
+
+        if ($booking->start_date > \Carbon\Carbon::today()) {
+            $booking->update([
+                'status' => 'canceled',
+            ]);
+            $alert = [
+                'type' => 'Success',
+                'message' => 'Booking canceled successfully.',
+            ];
+            return redirect()->back()->with($alert);
+        }
+        $alert = [
+            'type' => 'Error',
+            'message' => 'Booking cannot be canceled.',
+        ];
+        return redirect()->back()->with($alert);
     }
 }

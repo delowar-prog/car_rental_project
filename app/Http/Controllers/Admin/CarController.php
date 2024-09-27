@@ -14,7 +14,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $data['cars'] = Car::paginate();
+        $data['cars'] = Car::paginate(10);
         return view('admin.car.index', $data);
     }
 
@@ -32,29 +32,28 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'brand'=>'required',
-            'model'=>'nullable',
-            'year'=>'required',
-            'car_type'=>'nullable',
-            'image'=>'required',
+        $validated = $request->validate([
+            'name' => 'required',
+            'brand' => 'required',
+            'model' => 'nullable',
+            'year' => 'required',
+            'car_type' => 'nullable',
+            'image' => 'required',
         ]);
-        if($request->has('image')){
+        if ($request->has('image')) {
             $file = $request->file('image');
-            $uploadsPath=$file->store('uploads', 'public');
-            $path=Storage::url($uploadsPath);
+            $uploadsPath = $file->store('uploads', 'public');
+            $path = Storage::url($uploadsPath);
         }
 
-        $car=Car::create([
-            'name'=>$request->name,
-            'brand'=>$request->brand,
-            'model'=>$request->model,
-            'year'=>$request->year,
-            'car_type'=>$request->car_type,
-            'daily_rent_price'=>$request->daily_rent_price,
-            'image'=>$path,
-
+        $car = Car::create([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'year' => $request->year,
+            'car_type' => $request->car_type,
+            'daily_rent_price' => $request->daily_rent_price,
+            'image' => $path,
         ]);
 
         $alert = [
@@ -88,15 +87,29 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated=$request->validate([
-            'name'=>'required',
-            'brand'=>'required',
-            'model'=>'nullable',
-            'year'=>'required',
-            'car_type'=>'nullable',
+        $validated = $request->validate([
+            'name' => 'required',
+            'brand' => 'required',
+            'model' => 'nullable',
+            'year' => 'required',
+            'car_type' => 'nullable',
         ]);
+
         $car = Car::findOrFail($id);
-        $car->update($request->all());
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $uploadsPath = $file->store('uploads', 'public');
+            $path = Storage::url($uploadsPath);
+        }
+        $car->update([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'year' => $request->year,
+            'car_type' => $request->car_type,
+            'daily_rent_price' => $request->daily_rent_price,
+            'image' => $path,
+        ]);
         $alert = [
             'type' => 'Success',
             'message' => 'Car Updated successfully',
@@ -112,6 +125,11 @@ class CarController extends Controller
     public function destroy(string $id)
     {
         $car = Car::findOrFail($id);
+
+        if ($car->image && file_exists(public_path($car->image))) {
+            unlink(public_path($car->image));
+        }
+
         $car->delete();
         $alert = [
             'type' => 'Success',

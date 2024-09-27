@@ -7,7 +7,7 @@
     </div>
     <ul class="side-navbar my-3">
       <li class="navbar-item">
-        <a href="index.html" class="navbar-link">
+        <a href="{{url('/')}}" class="navbar-link">
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
         </a>

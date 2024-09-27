@@ -38,6 +38,9 @@ class User extends Authenticatable
         return false;
     }
 
+    public function userDetail(){
+        return $this->hasOne(UserDetail::class);
+    }
     public function rentals(){
         return $this->hasMany(Rental::class);
     }

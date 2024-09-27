@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section('title', 'Customer');
+@section('title', 'Customer')
 @section('content')
     <div class="container mt-5 table-style">
         <h3>Add New Car</h3>

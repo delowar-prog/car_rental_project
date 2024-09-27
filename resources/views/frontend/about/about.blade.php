@@ -1,32 +1,7 @@
 @extends('frontend.layout.layout')
-
-    <style>
-        .about-section {
-            padding: 20px 0;
-        }
-
-        .mission-vision {
-            background: #343a40;
-            color: white;
-            padding: 60px 0;
-        }
-
-        .mission-vision h2 {
-            color: #ffc107;
-        }
-
-        .team-member img {
-            border-radius: 50%;
-        }
-
-        .contact-info {
-            padding: 40px 0;
-        }
-    </style>
-
+@section('title', 'About')
 @section('content')
-
-    <section class="about-section text-center text-white">
+    <section class="about-section text-center">
         <div class="container">
             <h1 class="my-5">About Us</h1>
             <div class="row">
@@ -43,7 +18,7 @@
     </section>
 
     <!-- Mission & Vision Section -->
-    <section class="mission-vision text-center text-white my-5">
+    <section class="mission-vision text-center my-5">
         <div class="container">
             <h2>Our Mission & Vision</h2>
             <div class="row mt-4">
@@ -62,7 +37,7 @@
     </section>
 
     <!-- Team Section -->
-    <section class="team text-center my-5 text-white">
+    <section class="team text-center my-5">
         <div class="container">
             <h2>Meet Our Team</h2>
             <div class="row mt-4">
@@ -85,25 +60,5 @@
         </div>
     </section>
 
-    <!-- Contact Info Section -->
-    <section class="contact-info text-center text-white">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <h5>Location</h5>
-                    <p>123 Business St, New York, NY</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Email</h5>
-                    <p>info@company.com</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Phone</h5>
-                    <p>(123) 456-7890</p>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection
 

@@ -1,12 +1,15 @@
 @extends('admin.layout.layout')
-@section('title', 'Car');
+@section('title', 'Car')
 @section('content')
-    <div class="container mt-5 table-style">
+    <div class="container  card mt-5 table-style m-2 p-3">
         <div class="d-flex justify-content-between my-1">
             <h5 class="card-title mb-0">Car List </h5>
-            <a class="btn btn-success add-btn" href="{{ route('car.create') }}"><i
-                class="ri-add-line align-bottom me-1"></i> Create
-            Car</a>
+            <div class="d-flex gap-2">
+                <h3>Total Car : {{$cars->total()}}</h3>
+                <a class="btn btn-success add-btn" href="{{ route('car.create') }}"><i
+                    class="ri-add-line align-bottom me-1"></i> Create
+                Car</a>
+            </div>
         </div>
         @include('component.alert')
         <table class="table table-striped">
@@ -35,7 +38,7 @@
                         <td style="padding:8px 5px">{{ $car->year }}</td>
                         <td style="padding:8px 5px">{{ $car->car_type }}</td>
                         <td style="padding:8px 5px">{{ $car->daily_rent_price }}</td>
-                        <td style="padding:8px 5px">{{ $car->availability }}</td>
+                        <td style="padding:8px 5px">{{ $car->availability ? 'Yes' : 'No' }}</td>
                         <td style="padding:8px 5px">
                             <img src="{{ $car->image }}" alt="" width="70">
                         </td>
@@ -43,7 +46,7 @@
                         <td class="d-flex align-items-center">
                                 <div>
                                     <a class="btn btn-success" href="{{ route('car.edit', $car->id) }}">
-                                        <i class="far fa-pen"></i>
+                                        <i class="fa-solid fa-pencil"></i>
                                     </a>
                                 </div>
                                 <div>

@@ -1,34 +1,5 @@
 @extends('frontend.layout.layout')
-
-    <style>
-        .contact-section {
-            padding: 60px 0;
-            color: #f8f9fa;
-        }
-        .contact-form h2,
-        .contact-info h2 {
-            margin-bottom: 30px;
-            color: #f8f9fa;
-        }
-
-        .contact-info p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: #f8f9fa;
-        }
-        .contact-info i {
-            font-size: 1.5rem;
-            margin-right: 10px;
-            color: #007bff;
-        }
-        .form-control {
-            border-radius: 0;
-        }
-        .btn-primary {
-            border-radius: 0;
-            padding: 10px 20px;
-        }
-    </style>
+@section('title', 'Contact')
 
 @section('content')
 <section class="contact-section">
@@ -36,7 +7,7 @@
       <div class="row">
 
         <!-- Contact Form -->
-        <div class="col-md-6">
+        <div class="col-md-5 me-5">
           <h2>Contact Us</h2>
           <form>
             <div class="mb-3">
@@ -60,7 +31,7 @@
         </div>
 
         <!-- Contact Information -->
-        <div class="col-md-6">
+        <div class="col-md-6 ms-5">
           <h2>Get In Touch</h2>
           <div class="contact-info">
             <p><i class="bi bi-geo-alt"></i> Motijheel, Dhaka, Bangladesh</p>
