@@ -171,7 +171,6 @@ a.dropdown-link:hover {
   min-height: 100vh;
   width: 100%;
   overflow: hidden;
-
   min-width: 0;
 }
 
@@ -277,4 +276,15 @@ hr {
   font-size: 13px;
   color:#555;
   font-weight: bold;
+}
+
+/*------------------------------------------------------------------------Dashboard Card style------------------------------------------------*/
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card-container>div{
+    border-radius: 5px;
 }

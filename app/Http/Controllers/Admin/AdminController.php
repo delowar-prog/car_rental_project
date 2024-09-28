@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Car;
+use App\Models\Rental;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +15,12 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard.dashboard');
+        $data['total_cars'] = Car::count();
+        $data['available_cars'] = Car::where('availability', 1)->count();
+        $data['total_rentals'] = Rental::count();
+        $rentals = Rental::all();
+        $data['total_earnings'] = $rentals->sum('total_cost');
+        return view('admin.dashboard.dashboard', $data);
     }
 
     /**

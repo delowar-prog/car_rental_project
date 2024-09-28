@@ -3,7 +3,7 @@
       <button id="toggle-button">
         <i class="fa-solid fa-bars"></i>
       </button>
-      <a href="" class="brand">Admin Dashboard</a>
+      <a href="{{route('admin.dashboard')}}" class="brand">Admin Dashboard</a>
     </div>
     <ul class="side-navbar my-3">
       <li class="navbar-item">

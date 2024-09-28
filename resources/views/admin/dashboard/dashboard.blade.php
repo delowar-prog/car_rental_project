@@ -1,72 +1,23 @@
 @extends('admin.layout.layout')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="container balance-summary">
-        <div class="balance-title text-center text-white">
-            <p class="p-1 text-uppercase mb-0">Total Balance</p>
-        </div>
-        <div>
-            <div class="row row-cols-1 row-cols-md-3 g-2">
-                <div class="col card-bg-sale p-2">
-                    <h6 class="text-uppercase text-primary">Sale :</h6>
-                    <table style="width: 100%; font-weight: bold">
-                        <tr>
-                            <td>Total Bill</td>
-                            <td>2541.00</td>
-                            <td>BDT</td>
-                        </tr>
-                        <tr>
-                            <td>Total Paid</td>
-                            <td>1500.00</td>
-                            <td>BDT</td>
-                        </tr>
-                        <tr>
-                            <td>Total Due</td>
-                            <td>1041.00</td>
-                            <td>BDT</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col card-bg-purchase p-2">
-                    <h6 class="text-uppercase text-primary">Purchase :</h6>
-                    <table style="width: 100%; font-weight: bold">
-                        <tr>
-                            <td>Total Bill</td>
-                            <td>2541.00</td>
-                            <td>BDT</td>
-                        </tr>
-                        <tr>
-                            <td>Total Paid</td>
-                            <td>1500.00</td>
-                            <td>BDT</td>
-                        </tr>
-                        <tr>
-                            <td>Total Due</td>
-                            <td>1041.00</td>
-                            <td>BDT</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col card-bg-expense p-2">
-                    <h6 class="text-uppercase text-primary">Expense :</h6>
-                    <table style="width: 100%; font-weight: bold">
-                        <tr>
-                            <td>Total Bill</td>
-                            <td>2541.00</td>
-                            <td>BDT</td>
-                        </tr>
-                        <tr>
-                            <td>Total Paid</td>
-                            <td>1500.00</td>
-                            <td>BDT</td>
-                        </tr>
-                        <tr>
-                            <td>Total Due</td>
-                            <td>1041.00</td>
-                            <td>BDT</td>
-                        </tr>
-                    </table>
-                </div>
+    <div class="container mt-4">
+        <div class="card-container">
+            <div class="col p-3" style="background-color:rgba(87, 142, 193, 0.908);">
+                <h4 class="text-center">Total Cars</h4>
+                <h1 class="text-center" style="font-size: 50px; color:blueviolet">{{ $total_cars }}</h1>
+            </div>
+            <div class="col p-3" style="background-color:rgb(127, 255, 185);">
+                <h4 class="text-center">Available Cars</h4>
+                <h1 class="text-center" style="font-size: 50px; color:rgb(255, 140, 127)">{{ $available_cars }}</h1>
+            </div>
+            <div class="col p-3" style="background-color:rgb(255, 191, 127);">
+                <h4 class="text-center">Number of Rentals</h4>
+                <h1 class="text-center" style="font-size: 50px; color:rgb(127, 138, 255);">{{ $total_rentals }}</h1>
+            </div>
+            <div class="col p-3" style="background-color:rgb(127, 138, 255);">
+                <h4 class="text-center">Total Earnings (Tk.)</h4>
+                <h1 class="text-center" style="font-size: 40px; color:rgb(219, 255, 127);">{{ number_format($total_earnings, 2) }}</h1>
             </div>
         </div>
     </div>
