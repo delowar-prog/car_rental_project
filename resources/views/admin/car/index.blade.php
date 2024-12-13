@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 @section('title', 'Car')
 @section('content')
-    <div class="container  card mt-5 table-style m-2 p-3">
+    <div class="container-fluid  card mt-5 table-style m-2 p-3">
         <div class="d-flex justify-content-between my-1">
             <h5 class="card-title mb-0">Car List </h5>
             <div class="d-flex gap-2">

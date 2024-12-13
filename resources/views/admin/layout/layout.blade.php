@@ -25,7 +25,7 @@
         <!------------------------------------------------------Start nav section---------------------------------------->
         @include('admin.include.nav')
         <!-----------------------------------------------------Start main content------------------------------------------>
-        <div class="main-content">
+        <div class="main-content" style="background-color: #ddd; min-height:100vh">
           <div class="page-title">
             <h5 class="">@yield('title')</h5>
           </div>

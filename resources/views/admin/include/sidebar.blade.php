@@ -55,12 +55,7 @@
                         <span>Monthly Rental</span>
                     </a>
                 </li>
-                <li class="dropdown-item">
-                    <a href="#" class="dropdown-link">
-                        <i class="fa-regular fa-circle"></i>
-                        <span>Monthly Rental</span>
-                    </a>
-                </li>
+
             </ul>
         </li>
         <li class="navbar-item">
