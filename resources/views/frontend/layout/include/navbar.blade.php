@@ -1,4 +1,4 @@
-<div class="container-fluid nav-bar">
+<div class="container-fluid nav-bar position-sticky top-0" style="z-index: 999">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="left d-flex justify-content-between gap-3">
              <a class="navbar-brand text-light" href="#"><img src="{{asset('assets/images/logo.png')}}" width="200"></a>

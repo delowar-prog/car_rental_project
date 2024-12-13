@@ -13,14 +13,13 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('assets/css/front-style.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 
 <body>
     @include('frontend.layout.include.topbar')
     @include('frontend.layout.include.navbar')
-    @if (Request::is('/'))
-        @include('frontend.layout.include.filter')
-    @endif
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -35,12 +34,14 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="container-fluid mb-5" style="min-height: 80vh; background-color:#fff">
+    <div class="container-fluid mb-5" style="padding:0; min-height: 80vh; background-color:#fff">
         @yield('content')
     </div>
     <footer style="height:80px; background-color:#111">
         <h5 class="text-center pt-4 text-white">Developed by &copy;Delowar Hossain</h5>
     </footer>
+
+    @livewireScripts
 </body>
 
 </html>

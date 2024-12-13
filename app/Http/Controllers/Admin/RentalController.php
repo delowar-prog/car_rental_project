@@ -15,7 +15,7 @@ class RentalController extends Controller
      */
     public function index()
     {
-        $data['rentals'] = Rental::paginate(5);
+        $data['rentals'] = Rental::paginate(10);
         return view('admin.rental.index', $data);
     }
 

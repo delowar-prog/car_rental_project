@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Frontend\RentalController;
 use App\Http\Controllers\Admin\RentalController as DashboardRentalController;
 use App\Http\Controllers\Frontend\PageController;
@@ -43,3 +44,9 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
 
 Route::get('/about', [PageController::class, 'aboutPage'])->name('about');
 Route::get('/contact', [PageController::class, 'contactPage'])->name('contact');
+
+//report
+
+Route::get('/roport/total-rental', [ReportController::class, 'totalRental'])->name('report.total-rental');
+Route::get('/roport/total-car', [ReportController::class, 'totalCar'])->name('report.total-car');
+Route::get('/roport/monthly-rental', [ReportController::class, 'monthlyRentalForm'])->name('report.monthly-rental');

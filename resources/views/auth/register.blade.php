@@ -57,6 +57,9 @@
 @endsection
 @section('content')
     <div class="col-md-4">
+        <div class="d-flex justify-content-center align-items-center mb-2">
+            <img src="{{asset('assets/images/logo.png')}}" width="250" alt="logo">
+           </div>
         <div class="card">
             <div class="card-header">
                 <h5 class="text-center">Register Now</h5>
@@ -76,7 +79,7 @@
                     </div>
                     <div class="mb-3">
                         <button type="submit"
-                            class="btn btn-success form-control">Register</button>
+                        class="btn form-control text-white" style="background-color: #26353e">Register</button>
                     </div>
                     <p>Already have an account <span class="text-primary"><a href="/login">Login</a></span></p>
                 </div>
